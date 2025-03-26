@@ -1,6 +1,6 @@
 //src/model/notification.rs
 use rocket::serde::{Deserialize, Serialize};
-
+ 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Notification {
