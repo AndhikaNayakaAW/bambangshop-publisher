@@ -77,6 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1) In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+ 
+In the Observer pattern, the Subscriber is typically defined as an interface (or trait in Rust) to specify how updates should be handled. However, in BambangShop, the Subscriber is implemented as a plain struct with data only and no distinct behavior. Since every subscriber behaves the same way, there’s no need for an additional abstraction via a trait. A trait would only be necessary if different subscriber types were expected to handle updates differently. For now, using a single struct is sufficient.
+ 
+ 2) id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+ 
+Although a Vec can hold unique items, it requires manual checks for duplicates and involves linear searches that become inefficient as the collection grows. On the other hand, a DashMap (or any map/dictionary) offers fast access, automatic handling of uniqueness by keys, and efficient deletion. Given these benefits, using a DashMap is the more appropriate choice for managing unique identifiers like id in Program and url in Subscriber.
+ 
+ 3) When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+ 
+Rust’s strict compiler rules enforce thread safety, especially when multiple threads access shared data. The Singleton pattern can provide a single, global instance of data, but it doesn’t inherently ensure thread safety. The SUBSCRIBERS static variable in BambangShop uses a DashMap to provide safe concurrent access without requiring manual locking. Thus, even if a Singleton were implemented, a thread-safe data structure like DashMap would still be necessary. Using DashMap remains the preferred solution in this context.
 
 #### Reflection Publisher-2
 
