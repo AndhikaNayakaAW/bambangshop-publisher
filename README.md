@@ -103,3 +103,21 @@ If we rely solely on the Model, each model (e.g., Program, Subscriber, Notificat
 I have used Postman to test API endpoints, which allows me to quickly verify that they function as expected. Postman is beneficial for both individual and group projects, offering features such as request history, environment variables, and automated testing. These tools streamline the debugging process and facilitate smoother collaboration in software engineering projects.
 
 #### Reflection Publisher-3
+1) Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+ 
+The tutorial implements the Push Model. In this approach, the publisher creates a Notification and immediately pushes all the relevant data to each subscriber through their update method, without waiting for any request from the subscribers.
+ 
+ 2) What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+ 
+•	Advantages:
+	•	Flexibility: Observers can decide when to fetch updates, which is beneficial if certain observers are inactive or only need updates when actively in use.
+	•	Load Distribution: By having each observer pull updates as needed, the system can potentially reduce immediate processing load and network traffic, avoiding simultaneous notifications to all observers.
+	•	Scalability: This model distributes the responsibility of checking for updates, possibly leading to improved scalability as the publisher isn’t burdened with pushing updates to a large number of subscribers.
+    
+•	Disadvantages:
+	•	Timing Challenges: Determining the right interval for polling is critical. If the interval is too short, it can result in unnecessary requests and increased server load; if too long, observers might miss timely updates.
+	•	Synchronization Complexity: Ensuring all observers remain in sync with the latest data becomes more complex, as each observer independently decides when to check for updates.
+ 
+ 3) Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+ 
+Without multi-threading, the notification process becomes sequential—each subscriber is updated one after the other. This can lead to significant delays if any subscriber takes a long time to process an update, blocking the notification of subsequent subscribers. As the number of subscribers increases, this sequential execution can severely impact performance and responsiveness. In contrast, multi-threading allows notifications to be handled in parallel, improving overall speed and scalability.
