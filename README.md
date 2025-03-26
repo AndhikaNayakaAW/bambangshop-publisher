@@ -90,5 +90,16 @@ Although a Vec can hold unique items, it requires manual checks for duplicates a
 Rust’s strict compiler rules enforce thread safety, especially when multiple threads access shared data. The Singleton pattern can provide a single, global instance of data, but it doesn’t inherently ensure thread safety. The SUBSCRIBERS static variable in BambangShop uses a DashMap to provide safe concurrent access without requiring manual locking. Thus, even if a Singleton were implemented, a thread-safe data structure like DashMap would still be necessary. Using DashMap remains the preferred solution in this context.
 
 #### Reflection Publisher-2
+ 1) In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+ 
+Separating the Service and Repository layers from the Model helps maintain clean, organized code by assigning distinct responsibilities: the Model represents data, the Service handles business logic, and the Repository manages database interactions. This separation enhances code readability, testability, and maintainability, making it easier to evolve the project without it becoming cluttered.
+ 
+ 2) What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+ 
+If we rely solely on the Model, each model (e.g., Program, Subscriber, Notification) must handle data representation, business logic, and database operations all at once. This amalgamation can lead to overly complex models, tight coupling between components, and increased risk that changes in one area will inadvertently break functionality in others. Dividing responsibilities into dedicated layers reduces complexity and makes individual components easier to manage.
+ 
+ 3) Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+ 
+I have used Postman to test API endpoints, which allows me to quickly verify that they function as expected. Postman is beneficial for both individual and group projects, offering features such as request history, environment variables, and automated testing. These tools streamline the debugging process and facilitate smoother collaboration in software engineering projects.
 
 #### Reflection Publisher-3
